@@ -1,0 +1,47 @@
+﻿<!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+
+	<title>Creation d'Un Compte</title>
+
+	<link rel="stylesheet" href="css/ninou.css">
+	
+</head>
+
+<body>
+	<div id="add">
+     
+		<h2>Creer un compte</h2>
+			
+		<form action="/add" method="POST">
+
+			
+				
+				<p><label for="text">Nom d'utilisateur:</label></p>
+				<p><input type="text" name="username" required="true" <% if (typeof(i)!="undefined" && i!=1) {%> value="<%= username %>" <% }%> ></p> 
+
+				<p><label for="password">Mot de passe:</label></p>
+				<p><input type="password" name="password" required="true" <% if (typeof(i)!="undefined"  && i!=1) {%> value="<%= password %>" <% }%> ></p> 
+				
+				<p><label for="password">confirmer votre mot de passe:</label></p>
+				<p><input type="password" name="password1" required="true" <% if (typeof(i)!="undefined"  && i!=1) {%> value="<%= password1 %>" <% }%>></p> 
+				<% if ((typeof(i)!="undefined") && (i==0)) {%> 
+				<div style="font-size:13px;color:red;">les informations saisis existe  </div>
+				<% } if ((typeof(i)!="undefined") && (i==1)) { %>
+				<div style="font-size:13px;color:blue;">votre compte est ajouté  </div>
+				<% } if ((typeof(i)!="undefined") && (i==2)) { %>
+				<div style="font-size:13px;color:green;">confirmer bien votre mot de passe  </div>
+				<% } %>
+				<p><input type="submit" value="ajouter" ></p>
+				
+
+			
+
+		</form>
+
+	</div> 
+
+</body>	
+</html>
