@@ -29,5 +29,9 @@
 
 </body>	
 <script type="text/javascript" src="../usertrack.js"></script>
-
+<script>
+	Usertrack.init("1234","1234-1234-1234-1234");
+	Usertrack.track({identity:"jamel",age:"21",email:"jamel@gmail.com"});
+	Usertrack.send("load","homePage");
+</script>
 </html>

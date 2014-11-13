@@ -1,7 +1,7 @@
 {
-  "name": "CRUD",
+  "name": "user-track",
   "version": "0.0.0",
-  "main": "ninou.js",
+  "main": "web.js",
   "dependencies": {
     "ejs": "^1.0.0",
     "express": "^4.6.1"

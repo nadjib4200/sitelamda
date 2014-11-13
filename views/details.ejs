@@ -31,7 +31,8 @@
 <script type="text/javascript" src="../usertrack.js"></script>
 <script>
 	Usertrack.init("1234","1234-1234-1234-1234");
-	Usertrack.track({name:"ninou",age:"21",email:"ninou@gmail.com"});
+	Usertrack.track({identity:"jamel",age:"21",email:"jamel@gmail.com"});
+	Usertrack.send("load","detailsPage");
 	function like(){
 		Usertrack.send("click","like");
 		document.getElementById("like").style="background-color:#30393A;color:white;padding:5px 17px;border:none;cursor:pointer;";

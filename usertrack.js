@@ -4,7 +4,7 @@ var UsertrackSettings = {};
 Usertrack = {
 	init: function(apiKey, projectKey){
 		UsertrackSettings.apiKey = apiKey;
-		UsertrackSettings.projectKey = projectKey;
+		UsertrackSettings.projectkey = projectKey;
 		
 	},
 	get: function(){
@@ -18,16 +18,15 @@ Usertrack = {
 
 	},
 
-
 	send: function(action, value){
-		var requestParameterString,
-			usertrackBaseUrl = "user-track.herokuapp.com/api/events/";
+		var requestParameterString="",
+			usertrackBaseUrl = "http://user-track.herokuapp.com/api/events/";
+			//usertrackBaseUrl = "http://localhost:3000/api/events/";
 		for (var prop in UsertrackSettings) {
-		  requestParameterString=requestParameterString+prop+"="+UsertrackSettings[prop]+"&";
+		  requestParameterString=requestParameterString+prop+'='+UsertrackSettings[prop]+'&';
 		}
-		requestParameterString=requestParameterString+"action="+action+"&"+"value="+value;
+		requestParameterString=requestParameterString+'key='+action+'&'+'value='+value;
 		var request = usertrackBaseUrl + "?" + requestParameterString;
-		
 		(function(url){
 		    window.setTimeout(function(){
 		    	new Image().src = url;
