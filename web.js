@@ -40,7 +40,7 @@ app.get('/', function(req, res){
 
 app.get('/detail/:id', function(req, res){
 	var id=req.params.id;
-	res.render('login.ejs',{id:id,k:k});
+	res.render('details.ejs',{id:id,k:k});
 });
 
 var port = Number(process.env.PORT || 5000);
