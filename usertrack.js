@@ -5,7 +5,6 @@ Usertrack = {
 	init: function(apiKey, projectKey){
 		UsertrackSettings.apiKey = apiKey;
 		UsertrackSettings.projectkey = projectKey;
-		
 	},
 	get: function(){
 		return UsertrackSettings;
