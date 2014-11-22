@@ -76,8 +76,8 @@ Usertrack = {
 
 	send: function(action, value){
 		var requestParameterString="",
-			usertrackBaseUrl = "http://user-track.herokuapp.com/api/events/";
-			//usertrackBaseUrl = "http://localhost:3000/api/events/";
+			//usertrackBaseUrl = "http://user-track.herokuapp.com/api/events/";
+			usertrackBaseUrl = "http://localhost:3000/api/events/";
 		for (var prop in UsertrackSettings) {
 		  requestParameterString=requestParameterString+prop+'='+UsertrackSettings[prop]+'&';
 		}
