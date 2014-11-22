@@ -1,3 +1,30 @@
+
+var pubnub = PUBNUB.init({
+		publish_key: 'pub-c-ddc60605-57f5-4267-b32a-93af942c9438',
+		subscribe_key: 'sub-c-e66141da-5a29-11e4-bd8e-02ee2ddab7fe'
+	});
+
+	pubnub.subscribe({
+		channel: "ninou-chat",
+		callback: function (url) {
+			//create chat Box
+			
+			var div = document.createElement("div");
+			div.id="ChatBlackBox";
+			div.setAttribute("style","width:300px;background-color:black;height:40px;position: fixed; bottom:0;cursor:pointer;border-radius: 8px 8px 0 0;margin-left:1050px;");
+			div.setAttribute("onclick",'Usertrack.openChat("'+url+'")');
+
+			var div2 = document.createElement("div");
+			div2.setAttribute("style","color:white;margin-left:20px;margin-top:10px;font-size:20px;");
+			div2.innerHTML ="you have a message";
+			div.appendChild(div2);
+			document.body.appendChild(div);
+
+		}
+	});
+
+
+
 var UsertrackSettings = {};
 
 Usertrack = {
@@ -64,16 +91,5 @@ Usertrack = {
 	}
 }
 
-//create chat Box
 
-var div = document.createElement("div");
-div.id="ChatBlackBox";
-div.setAttribute("style","width:300px;background-color:black;height:40px;position: fixed; bottom:0;cursor:pointer;border-radius: 8px 8px 0 0;margin-left:1050px;");
-div.setAttribute("onclick",'Usertrack.openChat("https://www.hipchat.com/gDdXAMpiV?anonymous=1&timezone=Paris%2C+Madrid&minimal=1&welcome_msg=Questions%3F+Come+chat+with+us!+We%27re+here%2C+send+us+a+message")');
-
-var div2 = document.createElement("div");
-div2.setAttribute("style","color:white;margin-left:20px;margin-top:10px;font-size:20px;");
-div2.innerHTML ="Chat now";
-div.appendChild(div2);
-document.body.appendChild(div);
 
