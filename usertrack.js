@@ -1,14 +1,20 @@
-
-var pubnub = PUBNUB.init({
+/*var pubnub = PUBNUB.init({
+				publish_key: 'pub-c-ddc60605-57f5-4267-b32a-93af942c9438',
+				subscribe_key: 'sub-c-e66141da-5a29-11e4-bd8e-02ee2ddab7fe',
+			});*/
+    // INIT PubNub
+    var pubnub = PUBNUB.init({
 		publish_key: 'pub-c-ddc60605-57f5-4267-b32a-93af942c9438',
-		subscribe_key: 'sub-c-e66141da-5a29-11e4-bd8e-02ee2ddab7fe'
-	});
-
+		subscribe_key: 'sub-c-e66141da-5a29-11e4-bd8e-02ee2ddab7fe',
+        uuid          : 'ninou'
+    })
+  
+    
 	pubnub.subscribe({
 		channel: "ninou-chat",
 		callback: function (url) {
 			//create chat Box
-			
+
 			var div = document.createElement("div");
 			div.id="ChatBlackBox";
 			div.setAttribute("style","width:300px;background-color:black;height:40px;position: fixed; bottom:0;cursor:pointer;border-radius: 8px 8px 0 0;margin-left:1050px;");
@@ -22,9 +28,31 @@ var pubnub = PUBNUB.init({
 
 		}
 	});
+	 
+  	PUBNUB.subscribe({
+				channel   : 'presence',
+				connect : function() { 
+					console.log("conected:"+pubnub.get_uuid()); 
+					pubnub.publish({ 
+					    channel   : 'presence',
+					    message   : "connected:ninou",
+					    callback  : function(e) { console.log( "SUCCESS!", e );},
+					    error     : function(e) { console.log( "FAILED! RETRY PUBLISH!", e ); }
+					});
+				},
+				disconnect : function() { 
+					console.log("disconected:"+pubnub.get_uuid()); 
+					pubnub.publish({ 
+					    channel   : 'presence',
+					    message   : "disconected:ninou",
+					    callback  : function(e) { console.log( "SUCCESS!", e );},
+					    error     : function(e) { console.log( "FAILED! RETRY PUBLISH!", e ); }
+					});
+				},
+				callback  : function(m) { console.log("message++++++++++"+m); }
+	});
 
-
-
+	
 var UsertrackSettings = {};
 
 Usertrack = {
@@ -61,8 +89,8 @@ Usertrack = {
 			bar.innerHTML="<div style='margin-top:10px;margin-left:10px;'>Welcome to Usertrack Chat</div>";
 			bar.setAttribute("style","box-shadow: 0px 0px 10px #888888;width:302.5px;background-color:black;height:40px;position: fixed; bottom:303px;margin-left:1050px;color:white;");
 			var reduceButton = document.createElement("a");
-			reduceButton.setAttribute("style","position: fixed; bottom:290px;right:10px;color:white;font-size:60px;cursor:pointer;");
-			reduceButton.innerHTML="-";
+			reduceButton.setAttribute("style","color:white;font-size:60px;cursor:pointer;");
+			reduceButton.innerHTML="<div style='margin-top:-50px;margin-left:275px;'>-</div>";
 			reduceButton.setAttribute('onclick',"document.getElementById('barOfChat').style.display='none';document.getElementById('liveChat').style.display='none';document.getElementById('ChatBlackBox').style.display='';");
 			bar.appendChild(reduceButton);
 			document.body.appendChild(bar);
