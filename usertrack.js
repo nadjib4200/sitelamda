@@ -83,3 +83,18 @@ pubnub.subscribe({
 });
 
 
+pubnub.subscribe({
+	channel: UsertrackSettings.projectkey+"-chat-"+UsertrackSettings.identity,
+	callback: function (url) {
+		//create chat Box
+		var div = document.createElement("div");
+		div.id="ChatBlackBox";
+		div.setAttribute("style","width:300px;background-color:black;height:40px;position: fixed; bottom:0;cursor:pointer;border-radius: 8px 8px 0 0;margin-left:1050px;");
+		div.setAttribute("onclick",'Usertrack.openChat("'+url+'")');
+		var div2 = document.createElement("div");
+		div2.setAttribute("style","color:white;margin-left:20px;margin-top:10px;font-size:20px;");
+		div2.innerHTML ="you have a message";
+		div.appendChild(div2);
+		document.body.appendChild(div);
+	}
+});
