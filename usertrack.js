@@ -1,58 +1,3 @@
-/*var pubnub = PUBNUB.init({
-				publish_key: 'pub-c-ddc60605-57f5-4267-b32a-93af942c9438',
-				subscribe_key: 'sub-c-e66141da-5a29-11e4-bd8e-02ee2ddab7fe',
-			});*/
-    // INIT PubNub
-    var pubnub = PUBNUB.init({
-		publish_key: 'pub-c-ddc60605-57f5-4267-b32a-93af942c9438',
-		subscribe_key: 'sub-c-e66141da-5a29-11e4-bd8e-02ee2ddab7fe',
-        uuid          : 'ninou'
-    })
-  
-    
-	pubnub.subscribe({
-		channel: "ninou-chat",
-		callback: function (url) {
-			//create chat Box
-
-			var div = document.createElement("div");
-			div.id="ChatBlackBox";
-			div.setAttribute("style","width:300px;background-color:black;height:40px;position: fixed; bottom:0;cursor:pointer;border-radius: 8px 8px 0 0;margin-left:1050px;");
-			div.setAttribute("onclick",'Usertrack.openChat("'+url+'")');
-
-			var div2 = document.createElement("div");
-			div2.setAttribute("style","color:white;margin-left:20px;margin-top:10px;font-size:20px;");
-			div2.innerHTML ="you have a message";
-			div.appendChild(div2);
-			document.body.appendChild(div);
-
-		}
-	});
-	 
-  	PUBNUB.subscribe({
-				channel   : 'presence',
-				connect : function() { 
-					console.log("conected:"+pubnub.get_uuid()); 
-					pubnub.publish({ 
-					    channel   : 'presence',
-					    message   : "connected:ninou",
-					    callback  : function(e) { console.log( "SUCCESS!", e );},
-					    error     : function(e) { console.log( "FAILED! RETRY PUBLISH!", e ); }
-					});
-				},
-				disconnect : function() { 
-					console.log("disconected:"+pubnub.get_uuid()); 
-					pubnub.publish({ 
-					    channel   : 'presence',
-					    message   : "disconected:ninou",
-					    callback  : function(e) { console.log( "SUCCESS!", e );},
-					    error     : function(e) { console.log( "FAILED! RETRY PUBLISH!", e ); }
-					});
-				},
-				callback  : function(m) { console.log("message++++++++++"+m); }
-	});
-
-	
 var UsertrackSettings = {};
 
 Usertrack = {
@@ -118,6 +63,23 @@ Usertrack = {
 		})(request);
 	}
 }
+Usertrack.init("f512bac0-7689-11e4-9e3d-3b3a5674917e","f512bac0-7689-11e4-9e3d-3b3a5674917e");
+Usertrack.track({identity:"jamel",age:"21",email:"jamel@gmail.com"});
 
+var pubnub = PUBNUB.init({
+	publish_key: 'pub-c-ddc60605-57f5-4267-b32a-93af942c9438',
+	subscribe_key: 'sub-c-e66141da-5a29-11e4-bd8e-02ee2ddab7fe',
+    uuid          : 'jamel'
+});
+
+pubnub.subscribe({
+			channel   : 'presence-'+UsertrackSettings.projectkey,
+			state 	  :  {
+							identity:"jamel",
+							age:"21",
+							email:"jamel@gmail.com"
+			},
+			callback  : function() { console.log("user is subscribed") }
+});
 
 

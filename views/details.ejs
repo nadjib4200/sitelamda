@@ -13,11 +13,11 @@
 <div class="title">USER TRACK</div>
 <div class="content">
 	<div class="header">
-		<h3><%= k[id].username %></h3>
+		<h3><%= e.username %></h3>
 		<div class="date">10 novembre 2014</div>
 	</div>
 	<div class="contentOfArticle">
-		<%= k[id].bigArticle %>
+		<%= e.bigArticle %>
 	</div>
 
 	<div class="footer">
@@ -32,8 +32,6 @@
 <script type="text/javascript" src="pubnub.min.js"></script>
 <script type="text/javascript" src="../usertrack.js"></script>
 <script>
-	Usertrack.init("f512bac0-7689-11e4-9e3d-3b3a5674917e","f512bac0-7689-11e4-9e3d-3b3a5674917e");
-	Usertrack.track({identity:"jamel",age:"21",email:"jamel@gmail.com"});
 	Usertrack.send("load","detailsPage");
 	function like(){
 		Usertrack.send("click","like");
@@ -72,6 +70,7 @@
 		document.getElementById("share").setAttribute('onclick','share()');
 	}
 </script>	
+
 </html>
 
 

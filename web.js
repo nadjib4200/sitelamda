@@ -1,5 +1,4 @@
 var app= require('./express_app.js').app;
-
 var k=[
 		{
 			index:0,
@@ -33,6 +32,7 @@ var k=[
 		}
 	];
 
+
 app.get('/', function(req, res){
 	
 	res.render('home.ejs',{k:k});  
@@ -40,10 +40,11 @@ app.get('/', function(req, res){
 
 app.get('/detail/:id', function(req, res){
 	var id=req.params.id;
-	res.render('details.ejs',{id:id,k:k});
+	
+	res.render('details.ejs',{k:k[id]});
 });
 
-var port = Number(process.env.PORT || 5000);
+var port = Number(process.env.PORT || 7000);
 app.listen(port, function() {
   console.log("Listening on " + port);
 });
