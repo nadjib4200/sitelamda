@@ -1,3 +1,7 @@
+var chatStyle = document.createElement("style");
+chatStyle.innerHTML='#liveChat{ box-shadow: 0px 0px 10px #888888; position: fixed; bottom:0; border:1px solid black; right:25px; margin-bottom:-3px; } #ChatBlackBox { width:300px; background-color:black; height:40px; position: fixed; bottom:0; cursor:pointer; border-radius: 8px 8px 0 0; right:25px; } #reduceBoxText { color:white; margin-left:20px; margin-top:10px; font-size:20px; } #barOfChat { background-color:black; height:40px; color:white; } #reduceButton { color: white; z-index:1000; font-size: 60px; cursor: pointer; position: fixed; bottom: 297px; right: 90px; } #enlargeButton { color: red; font-size: 40px; cursor: pointer; position: fixed; z-index:1000; bottom: 315px; right: 60px; } #exitButton { color: white;font-size: 42px;cursor: pointer;position: fixed;z-index:1000;bottom: 300px;right: 30px; }';
+document.body.appendChild(chatStyle);
+
 var UsertrackSettings = {};
 
 Usertrack = {
@@ -18,27 +22,13 @@ Usertrack = {
 
 	openChat: function(url){
 		if(!document.getElementById("liveChat") && !document.getElementById("barOfChat")){
+			document.body.removeChild(document.getElementById("notificationChat"));
 			var chat = document.createElement("div");
-			chat.id="liveChat";
-			chat.setAttribute("style","box-shadow: 0px 0px 10px #888888;position: fixed; bottom:0;border:1px solid black;margin-left:1050px;margin-bottom:-3px;");
-			var iframe = document.createElement("iframe");
-			iframe.id="frameOfChat";
-			iframe.src=url;
-			iframe.height="300";
-			iframe.setAttribute("style","border:none");
-			chat.appendChild(iframe);
+			chat.id="Chat";
+			chat.innerHTML='<div style="display:none;" id="ChatBlackBox" onclick="displayChat()"><div id="reduceBoxText">click to display chat</div></div><div style="" id="liveChat"><div style="" id="barOfChat"><div style="margin-left:10px;">Welcome to Usertrack Chat</div><div id="buttonOfChat" style="margin-top:10px"><div id="reduceButton" onclick="reduce()">-</div><div id="enlargeButton" onclick="enlarge()"><div style="border:2px white solid;width:17px;height:17px;"></div></div><div id="exitButton" onclick="exit()">×</div></div></div><iframe src="https://www.hipchat.com/gDdXAMpiV?anonymous=1&amp;timezone=Paris%2C+Madrid&amp;minimal=1&amp;welcome_msg=Questions%3F+Come+chat+with+us!+We%27re+here%2C+send+us+a+message" id="frameOfChat" style="border:none;" height="300"></iframe></div>';
 			document.body.appendChild(chat);
-			document.getElementById("ChatBlackBox").style.display='none';
-			var bar = document.createElement("div");
-			bar.id="barOfChat";
-			bar.innerHTML="<div style='margin-top:10px;margin-left:10px;'>Welcome to Usertrack Chat</div>";
-			bar.setAttribute("style","box-shadow: 0px 0px 10px #888888;width:302.5px;background-color:black;height:40px;position: fixed; bottom:303px;margin-left:1050px;color:white;");
-			var reduceButton = document.createElement("a");
-			reduceButton.setAttribute("style","color:white;font-size:60px;cursor:pointer;");
-			reduceButton.innerHTML="<div style='margin-top:-50px;margin-left:275px;'>-</div>";
-			reduceButton.setAttribute('onclick',"document.getElementById('barOfChat').style.display='none';document.getElementById('liveChat').style.display='none';document.getElementById('ChatBlackBox').style.display='';");
-			bar.appendChild(reduceButton);
-			document.body.appendChild(bar);
+			
+			
 		}
 		else{
 			document.getElementById('barOfChat').style.display='';
@@ -88,8 +78,8 @@ pubnub.subscribe({
 	callback: function (url) {
 		//create chat Box
 		var div = document.createElement("div");
-		div.id="ChatBlackBox";
-		div.setAttribute("style","width:300px;background-color:black;height:40px;position: fixed; bottom:0;cursor:pointer;border-radius: 8px 8px 0 0;margin-left:1050px;");
+		div.id="notificationChat";
+		div.setAttribute("style","width:300px;background-color:black;height:40px;position: fixed; bottom:0;cursor:pointer;border-radius: 8px 8px 0 0;right:25px;");
 		div.setAttribute("onclick",'Usertrack.openChat("'+url+'")');
 		var div2 = document.createElement("div");
 		div2.setAttribute("style","color:white;margin-left:20px;margin-top:10px;font-size:20px;");
@@ -98,3 +88,51 @@ pubnub.subscribe({
 		document.body.appendChild(div);
 	}
 });
+
+
+function reduce(){
+	document.getElementById('barOfChat').style.display='none';
+	document.getElementById('liveChat').style.display='none';
+	document.getElementById('ChatBlackBox').style.display='';
+};
+function exit(){
+	document.getElementById('barOfChat').style.display='none';
+	document.getElementById('liveChat').style.display='none';
+	document.getElementById('ChatBlackBox').style.display='none';
+};
+function displayChat(){
+	document.getElementById('barOfChat').style.display='';
+	document.getElementById('liveChat').style.display='';
+	document.getElementById('ChatBlackBox').style.display='none';
+};
+function enlarge(){
+	if(document.getElementById('liveChat').style.width === "100%" && document.getElementById('liveChat').style.height === "100.5%"){
+		document.getElementById('liveChat').style.width="303px";
+		document.getElementById('liveChat').style.height="346px";
+		document.getElementById('liveChat').style.right="25px";
+		document.getElementById('liveChat').style.left="";
+		document.getElementById('liveChat').style.zIndex="4000";
+		document.getElementById('frameOfChat').style.width="301px";
+		document.getElementById('frameOfChat').style.height="305px";
+		document.getElementById('exitButton').style.bottom="300px";
+		document.getElementById('reduceButton').style.bottom="297px";
+		document.getElementById('enlargeButton').style.bottom="315px";
+		document.getElementById('exitButton').style.right="30px";
+		document.getElementById('reduceButton').style.right="90px";
+		document.getElementById('enlargeButton').style.right="60px";
+	}
+	else{
+		document.getElementById('liveChat').style.width="100%";
+		document.getElementById('liveChat').style.height="100.5%";
+		document.getElementById('liveChat').style.left="0px";
+		document.getElementById('liveChat').style.zIndex="4000";
+		document.getElementById('frameOfChat').style.width="100%";
+		document.getElementById('frameOfChat').style.height="93%";
+		document.getElementById('exitButton').style.bottom="600px";
+		document.getElementById('reduceButton').style.bottom="597px";
+		document.getElementById('enlargeButton').style.bottom="615px";
+		document.getElementById('exitButton').style.right="10px";
+		document.getElementById('reduceButton').style.right="70px";
+		document.getElementById('enlargeButton').style.right="40px";
+	}
+};
