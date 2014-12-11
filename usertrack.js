@@ -25,7 +25,7 @@ Usertrack = {
 			document.body.removeChild(document.getElementById("notificationChat"));
 			var chat = document.createElement("div");
 			chat.id="Chat";
-			chat.innerHTML='<div style="display:none;" id="ChatBlackBox" onclick="displayChat()"><div id="reduceBoxText">click to display chat</div></div><div style="" id="liveChat"><div style="" id="barOfChat"><div style="margin-left:10px;">Welcome to Usertrack Chat</div><div id="buttonOfChat" style="margin-top:10px"><div id="reduceButton" onclick="reduce()">-</div><div id="enlargeButton" onclick="enlarge()"><div style="border:2px white solid;width:17px;height:17px;"></div></div><div id="exitButton" onclick="exit()">×</div></div></div><iframe src="https://www.hipchat.com/gDdXAMpiV?anonymous=1&amp;timezone=Paris%2C+Madrid&amp;minimal=1&amp;welcome_msg=Questions%3F+Come+chat+with+us!+We%27re+here%2C+send+us+a+message" id="frameOfChat" style="border:none;" height="300"></iframe></div>';
+			chat.innerHTML='<div style="display:none;" id="ChatBlackBox" onclick="displayChat()"><div id="reduceBoxText">click to display chat</div></div><div style="" id="liveChat"><div style="" id="barOfChat"><div style="margin-left:10px;">Welcome to Usertrack Chat</div><div id="buttonOfChat" style="margin-top:10px"><div id="reduceButton" onclick="reduce()">-</div><div id="enlargeButton" onclick="enlarge()"><div style="border:2px white solid;width:17px;height:17px;"></div></div><div id="exitButton" onclick="exit()">×</div></div></div><iframe src='+url+' id="frameOfChat" style="border:none;" height="300"></iframe></div>';
 			document.body.appendChild(chat);
 			
 			
