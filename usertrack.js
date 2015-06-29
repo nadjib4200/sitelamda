@@ -1,4 +1,4 @@
-var chatStyle = document.createElement("style");
+/*var chatStyle = document.createElement("style");
 chatStyle.innerHTML='#liveChat{ box-shadow: 0px 0px 10px #888888; position: fixed; bottom:0; border:1px solid black; right:25px; margin-bottom:-3px; } #ChatBlackBox { width:300px; background-color:black; height:40px; position: fixed; bottom:0; cursor:pointer; border-radius: 8px 8px 0 0; right:25px; } #reduceBoxText { color:white; margin-left:20px; margin-top:10px; font-size:20px; } #barOfChat { background-color:black; height:40px; color:white; } #reduceButton { color: white; z-index:1000; font-size: 60px; cursor: pointer; position: fixed; bottom: 297px; right: 90px; } #enlargeButton { color: red; font-size: 40px; cursor: pointer; position: fixed; z-index:1000; bottom: 315px; right: 60px; } #exitButton { color: white;font-size: 42px;cursor: pointer;position: fixed;z-index:1000;bottom: 300px;right: 30px; }';
 document.body.appendChild(chatStyle);
 
@@ -136,3 +136,4 @@ function enlarge(){
 		document.getElementById('enlargeButton').style.right="40px";
 	}
 };
+*/
